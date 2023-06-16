@@ -21,6 +21,24 @@ export class PhoneBook extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    console.log(" component did mount");
+    const contacts = localStorage.getItem("contacts");
+    const parsedContacts = JSON.parse(contacts);
+    console.log(parsedContacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("component did update");
+    if (this.state.contacts !== prevState.contacts) {
+      console.log("Контакти було оновлено");
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmitHandler = data => {
     const { contacts } = this.state;
     const normalizedName = data.name.toLocaleLowerCase().split(' ').join('');
@@ -52,18 +70,7 @@ export class PhoneBook extends Component {
     }));
   };
 
-  /*deleteContact = e => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(
-        contact => contact.id !== e.target.id
-      ),
-    }));
-    console.log (e);
-    console.log (e.target.id);
-    
-  };*/
-
-  deleteContact = id => {
+ deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
