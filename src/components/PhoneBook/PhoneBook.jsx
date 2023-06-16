@@ -22,19 +22,19 @@ export class PhoneBook extends Component {
   };
 
   componentDidMount() {
-    console.log(" component did mount");
+    //console.log(" component did mount");
     const contacts = localStorage.getItem("contacts");
     const parsedContacts = JSON.parse(contacts);
-    console.log(parsedContacts);
+    //console.log(parsedContacts);
     if (parsedContacts) {
       this.setState({ contacts: parsedContacts });
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log("component did update");
+  componentDidUpdate(prevState) {
+    //console.log("component did update");
     if (this.state.contacts !== prevState.contacts) {
-      console.log("Контакти було оновлено");
+      //console.log("Контакти було оновлено");
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
   }

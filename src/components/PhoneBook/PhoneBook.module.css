@@ -1,6 +1,7 @@
 .wrapper {
   padding: 24px;
-  background-color:#E0E0F0;
+  background-image:url('image.jpg');
+  background-size: cover;
 }
   .mainTitle {
     font-size: 32px;
