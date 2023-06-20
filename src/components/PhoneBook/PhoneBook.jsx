@@ -31,7 +31,7 @@ export class PhoneBook extends Component {
     }
   }
 
-  componentDidUpdate(prevState) {
+  componentDidUpdate(prevProps, prevState) {
     //console.log("component did update");
     if (this.state.contacts !== prevState.contacts) {
       //console.log("Контакти було оновлено");
